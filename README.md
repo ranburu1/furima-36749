@@ -24,12 +24,12 @@
 | ------------------ | ---------- | ------------------------------ |
 | title              | string     | null: false                    |
 | text               | text       | null: false                    |
-| category           | string     | null: false                    |
-| status             | string     | null: false                    |
+| category_id        | integer    | null: false                    |
+| status_id          | integer    | null: false                    |
 | price              | integer    | null: false                    |
-| shipping_fee       | string     | null: false                    |
-| area               | string     | null: false                    |
-| delivery_days      | string     | null: false                    |
+| shipping_fee_id    | integer    | null: false                    |
+| area_id            | integer    | null: false                    |
+| delivery_days_id   | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
@@ -48,14 +48,14 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :shipping_address
+- has_one :shipping_address
 
 ## shipping_addresses テーブル
 
 | Column         | Type       | Options                        |
 | -----------    | ---------- | ------------------------------ |
-| postcode       | integer    | null: false                    |
-| prefecture_id  | string     | null: false                    |
+| postcode       | string     | null: false                    |
+| area_id        | integer    | null: false                    |
 | city           | string     | null: false                    |
 | block          | string     | null: false                    |
 | building       | string     |                                |
