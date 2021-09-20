@@ -20,14 +20,3 @@ class Item < ApplicationRecord
  belongs_to :area
  has_one_attached :image
 end
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| title              | string     | null: false                    |
-| explanatory_text   | text       | null: false                    |
-| category_id        | integer    | null: false                    |
-| status_id          | integer    | null: false                    |
-| price              | integer    | null: false                    |
-| shipping_fee_id    | integer    | null: false                    |
-| area_id            | integer    | null: false                    |
-| delivery_days_id   | integer    | null: false                    |
-| user               | references | null: false, foreign_key: true |
