@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
  extend ActiveHash::Associations::ActiveRecordExtensions
-
+  
  validates :title,            presence: true
  validates :explanatory_text, presence: true
  validates :category_id,      presence: true, numericality: { other_than: 1 }
