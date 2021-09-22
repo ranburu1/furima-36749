@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-    @item.image = fixture_file_upload('/files/staff1.jpg')
   end
 
   describe '商品の保存' do
@@ -40,7 +39,7 @@ RSpec.describe Item, type: :model do
       it 'priceが空では出品できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price can't be blank", 'Price is invalid', 'Price is not a number')
+        expect(@item.errors.full_messages).to include("Price can't be blank", "Price is not a number")
       end
 
       it 'shipping_fee_idが1(---)では出品できない' do
