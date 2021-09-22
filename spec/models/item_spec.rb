@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-    @item.image = fixture_file_upload("/files/staff1.jpg")
+    @item.image = fixture_file_upload('/files/staff1.jpg')
   end
 
   describe '商品の保存' do
@@ -18,7 +18,7 @@ RSpec.describe Item, type: :model do
         @item.title = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Title can't be blank")
-      end     
+      end
       it 'explanatory_textが空では出品できない' do
         @item.explanatory_text = ''
         @item.valid?
@@ -28,38 +28,37 @@ RSpec.describe Item, type: :model do
       it 'category_idが1(---)では出品できない' do
         @item.category_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
 
       it 'status_idが1(---)では出品できない' do
         @item.status_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status must be other than 1")
+        expect(@item.errors.full_messages).to include('Status must be other than 1')
       end
 
       it 'priceが空では出品できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price can't be blank", "Price is invalid", "Price is not a number")
+        expect(@item.errors.full_messages).to include("Price can't be blank", 'Price is invalid', 'Price is not a number')
       end
 
       it 'shipping_fee_idが1(---)では出品できない' do
         @item.shipping_fee_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping fee must be other than 1")
+        expect(@item.errors.full_messages).to include('Shipping fee must be other than 1')
       end
 
       it 'area_idが1(---)では出品できない' do
         @item.area_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Area must be other than 1")
+        expect(@item.errors.full_messages).to include('Area must be other than 1')
       end
-
 
       it 'delivery_days_idが1(---)では出品できない' do
         @item.delivery_days_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery days must be other than 1")
+        expect(@item.errors.full_messages).to include('Delivery days must be other than 1')
       end
 
       it 'imageが空では出品できない' do
@@ -68,17 +67,16 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
 
-      it "priceが299以下だと出品できないこと" do
+      it 'priceが299以下だと出品できないこと' do
         @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
-        
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
 
-      it "priceが10000000以上だと出品できないこと" do
+      it 'priceが10000000以上だと出品できないこと' do
         @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
 
       it 'ユーザーが紐付いていないと出品できない' do
@@ -87,10 +85,10 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('User must exist')
       end
 
-      it "priceが半角数字でなければ出品できない" do
+      it 'priceが半角数字でなければ出品できない' do
         @item.price = '２２２２２'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
     end
   end
