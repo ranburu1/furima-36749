@@ -5,7 +5,7 @@ class OrderAddress
   with_options presence: true do
     validates :user_id
     validates :item_id
-    validates :area_id
+    validates :area_id, numericality: { other_than: 1 }
     validates :city
     validates :block
     validates :phone_number, format: { with: /\A\d{10,11}\z/ }
