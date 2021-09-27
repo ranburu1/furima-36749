@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   validates :delivery_days_id, presence: true, numericality: { other_than: 1 }
   validates :image,            presence: true
 
-  # has_one :order
+  has_one :order
   belongs_to :user
   belongs_to :category
   belongs_to :status
