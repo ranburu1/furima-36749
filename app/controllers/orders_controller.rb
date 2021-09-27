@@ -1,9 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
-
+  before_action :set_item, only: [:index, :create]
   def index
     @order_shipping_address = OrderShippingAddress.new
-    set_item
     if @item.order.present? or current_user == @item.user
       redirect_to root_path
     end
@@ -11,7 +10,6 @@ class OrdersController < ApplicationController
 
   def create
     @order_shipping_address = OrderShippingAddress.new(order_params)
-    set_item
     if @order_shipping_address.valid?
      pay_item
      @order_shipping_address.save
