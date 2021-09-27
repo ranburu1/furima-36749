@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
-  before_action :move_to_signed_in, expect: [:index]
+  before_action :authenticate_user!, only: [:index]
 
   def index
     @order_shipping_address = OrderShippingAddress.new
-    @item = Item.find(params[:item_id])
+    set_item
     if @item.order.present? or current_user == @item.user
       redirect_to root_path
     end
@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
 
   def create
     @order_shipping_address = OrderShippingAddress.new(order_params)
-    @item = Item.find(params[:item_id])
+    set_item
     if @order_shipping_address.valid?
      pay_item
      @order_shipping_address.save
@@ -36,9 +36,7 @@ class OrdersController < ApplicationController
     )
   end
 
-  def move_to_signed_in
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    end
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 end
