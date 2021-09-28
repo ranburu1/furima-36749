@@ -59,34 +59,34 @@ RSpec.describe OrderShippingAddress, type: :model do
       it 'phone_numberが９文字以下だと保存できないこと' do
         @order_shipping_address.phone_number = '123445678'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_shipping_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'phone_numberが12文字以上だと保存できないこと' do
         @order_shipping_address.phone_number = '1234456789101'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_shipping_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'phone_numberが半角数字でなければ保存できないこと' do
-        @order_shipping_address.phone_number ='１２３４５６７８９０'
+        @order_shipping_address.phone_number = '１２３４５６７８９０'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_shipping_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'poscodeがハイフンがなければ保存できないこと' do
         @order_shipping_address.postcode = '1234567'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Postcode is invalid")
+        expect(@order_shipping_address.errors.full_messages).to include('Postcode is invalid')
       end
 
       it 'poscodeが半角数字でなければ保存できないこと' do
         @order_shipping_address.postcode = '１２３-３４５６'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Postcode is invalid")
+        expect(@order_shipping_address.errors.full_messages).to include('Postcode is invalid')
       end
 
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @order_shipping_address.token = nil
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages).to include("Token can't be blank")
